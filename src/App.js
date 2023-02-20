@@ -6,13 +6,22 @@ import ToDoFooter from "./Components/ToDoFooter/ToDoFooter";
 const App = () => {
   const [listOfToDo, setListOfToDo] = useState(() => {
     const saved = localStorage.getItem("todos");
-    const initial = JSON.parse(saved);
-    return initial || "";
+    if (saved) {
+      const initial = JSON.parse(saved);
+      return initial;
+    } else {
+      return [];
+    }
   });
+
   const [numOfTasks, setNumOfTasks] = useState(() => {
     const saved = localStorage.getItem("todos");
-    const initial = JSON.parse(saved);
-    return initial.length || 0;
+    if (saved) {
+      const initial = JSON.parse(saved);
+      return initial.length;
+    } else {
+      return 0;
+    }
   });
 
   const incrementNumOfTasks = () => {
@@ -33,6 +42,7 @@ const App = () => {
   };
 
   const deleteAll = () => {
+    localStorage.removeItem("todos");
     setListOfToDo([]);
     setNumOfTasks(0);
   };
@@ -47,14 +57,17 @@ const App = () => {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(listOfToDo));
-  }, [listOfToDo]);
+  }, [listOfToDo, numOfTasks]);
 
   return (
-    <div className="">
+    <main
+      className="w-[90%] md:w-2/3 lg:w-[50%] xl:w-[40%]
+    absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 bg-white p-6 rounded-lg"
+    >
       <ToDoForm addItemToList={addItemToList} />
       <ToDoList todos={listOfToDo} deleteItem={deleteItem} />
       <ToDoFooter numOfTasks={numOfTasks} deleteAllHandler={deleteAll} />
-    </div>
+    </main>
   );
 };
 

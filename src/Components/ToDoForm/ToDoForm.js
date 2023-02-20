@@ -21,10 +21,7 @@ const ToDoForm = (props) => {
     return props.addItemToList(newToDo);
   };
   return (
-    <form
-      onSubmit={onSubmitHandler}
-      className="flex-col justify-center items-center"
-    >
+    <form onSubmit={onSubmitHandler}>
       <ToDoLabel label={label} labelName={labelName} />
       <div className="flex justify-center items-center mt-2">
         <ToDoInput label={label} ref={toDo} />

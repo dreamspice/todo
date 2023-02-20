@@ -6,12 +6,12 @@ const ToDoItem = (props) => {
   };
 
   return (
-    <div className="flex items-center">
-      <li className="bg-gray-100 py-2 px-2 font-medium mb-2 basis-[90%]">
+    <div className="flex items-stretch w-full">
+      <li className="bg-gray-100 py-2 px-2 font-medium mb-2 w-full rounded-l-md initial break-all">
         {props.children}
       </li>
       <button
-        className=" bg-red-500 h-[2.5rem] mb-2 px-2 rounded-r-md hover:bg-red-400"
+        className=" bg-red-500 mb-2 py-3 px-4 rounded-r-md hover:bg-red-400"
         onClick={deleteItemHandler}
       >
         <AiFillDelete className="scale-125 text-white" />
